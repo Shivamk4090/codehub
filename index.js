@@ -1,9 +1,12 @@
 const express = require('express')
+const cookieParser = require("cookie-parser")
 const router = require('./router/homeRoute')
 const Port = process.env.Port || 3333
 const db  = require('./config/mongooseConfig')
 const app = express()
 app.use(express.urlencoded())
+app.use(cookieParser())
+
 
 
 

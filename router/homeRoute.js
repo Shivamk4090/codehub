@@ -28,6 +28,7 @@ router.post('/user/create-user', userController.createUser)
 router.get('/user/signIn', userController.signIn)
 router.post('/user/validate-user', userController.validateUser)
 router.get('/user/profile', userController.profile)
+router.get('/user/Logout', userController.Logout)
 
 
 
