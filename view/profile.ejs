@@ -1,16 +1,31 @@
 <center>
-       <b>Welcome bro</b> 
-       <br>
-       <p id="profile-email"> email : <%=email%></p>
-       <% for(const x in locals){    %>
-          
-           <p> <%= JSON.stringify(x) %> ::
-                <%= JSON.stringify(locals[x])  %>  </p>
-           <br>
-           <br>
-    <% } %>
+       <b>Hi <%= name%>   </b> 
+</center>
+<br>
+
+
+<div class="col-sm-7">
+
+    <img src="/images/avtar.jpg" alt="Avatar" class="avatar">
+
+</div>
+
+
+<div class="col-sm-5">
+    <br> 
+    <p> Name : <%= name %>  </p>
+    <p id="profile-email"> Email : <%=email%></p>
+
+
+</div>
+
+
     
-    </p>
 
         
-</center>
+
+    
+    
+
+        
+

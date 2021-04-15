@@ -1,9 +1,19 @@
 <center>
        <b>Welcome to signIn page</b> 
-       <br>
-        <form action="/user/createSession" method="POST">
-            <input type="email" name="email" id="" placeholder="Enter Your email" required=true>
-            <input type="password" name="password" id="" placeholder="Enter your password" required = true>
-            <input type="submit" value="submit">
-         </form>
 </center>
+<br><br>
+    <form action="/user/createSession" method="POST">
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Email</label>
+            <div class="col-sm-4">
+                <input type="email" name="email" id="" placeholder="Enter Your email" required=true class="form-control">
+            </div><br><br>
+
+            <label class="col-sm-2 col-form-label">Password</label>
+            <div class="col-sm-4">
+                <input type="password" name="password" id="" placeholder="Enter your password" required = true class="form-control">
+            </div><br><br>
+
+        <input type="submit" value="submit" class="btn btn-primary">
+        </div>
+    </form>

@@ -1,3 +1,4 @@
+const uri = "mongodb://shivam:RV2kzFibgeW2gOHY@clusteralpha-shard-00-00.hftvx.mongodb.net:27017,clusteralpha-shard-00-01.hftvx.mongodb.net:27017,clusteralpha-shard-00-02.hftvx.mongodb.net:27017/majorProject?ssl=true&replicaSet=atlas-o0jyay-shard-0&authSource=admin&retryWrites=true&w=majority"
 const express = require('express')
 const Port = process.env.Port || 3333
 const db  = require('./config/mongooseConfig')
@@ -7,6 +8,7 @@ const passportLocal = require("./config/passport-local-config")
 const router = require('./router/homeRoute')
 const expressLayouts =  require("express-ejs-layouts")
 const app = express()
+const MongoStore = require("connect-mongo");
 app.use(express.urlencoded())
 
 
@@ -24,11 +26,17 @@ app.use(session({
     resave:false,
     cookie:{
         maxAge:(1000*60*60)
-    }
+    },
+    store: MongoStore.create({ 
+        mongoUrl: uri,
+        autoRemove: 'native' 
+    
+    })
 }))
 
 app.use(passport.initialize())
 app.use(passport.session())
+
 
 
 //

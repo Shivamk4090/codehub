@@ -4,6 +4,8 @@ const userTable  = require('../model/userSchema')
 //render sign up page
 module.exports.signUp = function(req, res){
 
+    
+
     res.render('signUp')
 }
 //render signIn page
@@ -55,10 +57,16 @@ module.exports.createSession = (req, res)=>{
     res.redirect('/')
 }
 
+module.exports.destroy = (req, res) => {
+    req.logout()
+    res.redirect('/')
+}
+
 
 //render profile page of signed in user
 module.exports.profile = (req, res)=>{
-
-    
-    res.render('profile', {email:res.locals.user.email})
+    res.render('profile', {
+        email:res.locals.user.email,
+        name : res.locals.user.name
+    })
 }

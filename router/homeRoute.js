@@ -36,10 +36,13 @@ router.post('/user/createSession',passport.authenticate('local', {
 }) , userController.createSession)
 
 
+
+
 router.get('/user/profile', passport.checkAuthentication , userController.profile)
 
 
-
+// destroy session
+router.get('/user/destroy', userController.destroy)
 
 
 //invalid route handdler
