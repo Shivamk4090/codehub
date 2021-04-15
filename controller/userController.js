@@ -51,14 +51,14 @@ module.exports.createUser = (req, res)=>{
 
 
 //create session for the user
-module.exports.validateUser = (req, res)=>{
-
-    res.redirect('/user/profile')
+module.exports.createSession = (req, res)=>{
+    res.redirect('/')
 }
 
 
 //render profile page of signed in user
 module.exports.profile = (req, res)=>{
+
     
-    res.render('profile', {email:""})
+    res.render('profile', {email:res.locals.user.email})
 }

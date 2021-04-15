@@ -1,21 +1,16 @@
-<html>
-    <head>
-        <title>
-            codeHub|signIn
-        </title>
-    </head>
-<body>
-
-    <center>
+<center>
        <b>Welcome bro</b> 
        <br>
        <p id="profile-email"> email : <%=email%></p>
+       <% for(const x in locals){    %>
+          
+           <p> <%= JSON.stringify(x) %> ::
+                <%= JSON.stringify(locals[x])  %>  </p>
+           <br>
+           <br>
+    <% } %>
+    
+    </p>
 
         
-    </center>
-
-
-</body>
-
-
-</html>
+</center>

@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const passport = require("passport")
 
 
 
@@ -7,6 +8,7 @@ const router = express.Router()
 //     console.log(Date.now())
 //     next()
 // })
+
 
 
 //homeController module & routes
@@ -26,8 +28,15 @@ router.post('/user/create-user', userController.createUser)
 
 //router for signIn page
 router.get('/user/signIn', userController.signIn)
-router.post('/user/validate-user', userController.validateUser)
-router.get('/user/profile', userController.profile)
+
+router.post('/user/createSession',passport.authenticate('local', {
+    failureRedirect: "/user/signIn",
+    failureFlash: true 
+
+}) , userController.createSession)
+
+
+router.get('/user/profile', passport.checkAuthentication , userController.profile)
 
 
 

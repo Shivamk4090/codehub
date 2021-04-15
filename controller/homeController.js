@@ -1,4 +1,6 @@
 module.exports.home = function(req, res){
+    //passport sent user in req.user after creating session
+    // console.log(req.locals);
     res.render('home')
 }
 
