@@ -1,7 +1,13 @@
+const postTable = require("../model/postSchema")
+
 module.exports.home = function(req, res){
     //passport sent user in req.user after creating session
     // console.log(req.locals);
-    res.render('home')
+    postTable.find({}).populate("user").exec((err, data)=>{
+      
+        res.render('home', {postList : data})
+    })
+    
 }
 
 module.exports.home2 = function(req, res){

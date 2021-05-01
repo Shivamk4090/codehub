@@ -36,9 +36,13 @@ router.post('/user/createSession',passport.authenticate('local', {
 }) , userController.createSession)
 
 
+const postController = require("../controller/postController")
+router.post("/user/createPost", passport.checkAuthentication,postController.createPost)
+
 
 
 router.get('/user/profile', passport.checkAuthentication , userController.profile)
+
 
 
 // destroy session

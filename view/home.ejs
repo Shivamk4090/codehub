@@ -1,3 +1,39 @@
-<center>Welcome to CodeHub</center>
+
+<% if(locals.user){ %> 
+
+<form action="/user/createPost" method="POST">
+
+    <textarea name="post" class="form-control"></textarea>
+    <input type="submit" value="post" class="btn">
+</form>
+
+
+
+<div id="post-List">
+    <center>Post by Users</center>
+
+    <ul>
+        
+        <% for(x of postList){ %>
+         <li>   
+             <%= x.content %>  
+             <small><%= x.user.name %>  </small>
+        </li>
+        <% } %>   
+    </ul>
+
+</div>
+
+
+<% } %> 
+
+
+
+
+
+
+
+
+
 
 
