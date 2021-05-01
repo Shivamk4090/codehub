@@ -39,6 +39,9 @@ router.post('/user/createSession',passport.authenticate('local', {
 const postController = require("../controller/postController")
 router.post("/user/createPost", passport.checkAuthentication,postController.createPost)
 
+const commentController  =  require("../controller/commentController")
+router.post("/user/comment", passport.checkAuthentication,commentController.createComment)
+
 
 
 router.get('/user/profile', passport.checkAuthentication , userController.profile)

@@ -1,25 +1,22 @@
 const mongoose  = require('mongoose')
-const commentTable = require('./commentSchema')
+const postTable = require('./postSchema')
 const userTable = require('./userSchema')
 
-
-const postSchema = new mongoose.Schema({
-    
+const commentSchema = mongoose.Schema({
     content:{
         type:String,
         required:true
     },
-    user:{
+    userId:{
         type:mongoose.Schema.Types.ObjectId,
         ref:userTable
     },
-    commentid:[{
+    postId:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:commentTable
-    }]
+        ref:"postTable"
+    }
 })
 
+const commentTable = mongoose.model("commentTable", commentSchema)
 
-const postTable  = mongoose.model("postTable", postSchema)
-
-module.exports = postTable
+module.exports = commentTable
