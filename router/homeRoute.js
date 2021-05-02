@@ -23,7 +23,7 @@ router.get('/home', homeController.home)
 const userController = require('../controller/userController')
 router.get('/user/signUp', userController.signUp)
 router.post('/user/create-user', userController.createUser)
-
+router.post('/user/update',userController.updateProfile )
 
 
 //router for signIn page
@@ -35,16 +35,19 @@ router.post('/user/createSession',passport.authenticate('local', {
 
 }) , userController.createSession)
 
-
+//post by users
 const postController = require("../controller/postController")
 router.post("/user/createPost", passport.checkAuthentication,postController.createPost)
+router.get("/post/destroy/:id", passport.checkAuthentication, postController.destroyPost)
 
+
+//comments on post by users
 const commentController  =  require("../controller/commentController")
 router.post("/user/comment", passport.checkAuthentication,commentController.createComment)
+router.get("/comment/delete/:id", passport.checkAuthentication, commentController.deleteComment)
 
 
-
-router.get('/user/profile', passport.checkAuthentication , userController.profile)
+router.get('/user/profile/:id', passport.checkAuthentication , userController.profile)
 
 
 

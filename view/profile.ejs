@@ -19,10 +19,39 @@
 
 
 </div>
+
+
+
+
 </div>
 
 
+<div>
+   <% if(user.id == id ){ %> 
+
+    <form action="/user/update" method="post" class="">
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Name</label>
+            <div class="col-sm-4">
+                <input type="text" name="name" id="" placeholder="update name" required = true class="form-control">
+            </div><br><br>
+
+            <label class="col-sm-2 col-form-label">Email</label>
+            <div class="col-sm-4">
+                <input type="email" name="email" id="" placeholder="update email" required=true class="form-control">
+            </div><br><br>
+
+            
+
+        <input type="submit" value="submit" class="btn btn-primary">
+        </div>
     
+    </form>
+
+    <% } %> 
+
+
+</div>
 
         
 

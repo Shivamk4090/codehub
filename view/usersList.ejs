@@ -1,0 +1,10 @@
+<div style="flex: 40%;"> 
+    <p>Users Active</p>
+    <% for(x of users){ %> 
+        <ul>
+            <li>
+               <a href="/user/profile/<%=x.id%> "> <%= x.name %> </a>
+            </li>
+        </ul>
+        <% } %> 
+</div>

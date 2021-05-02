@@ -1,3 +1,4 @@
+const commentTable = require("../model/commentSchema");
 const postTable = require("../model/postSchema")
 
 
@@ -26,7 +27,27 @@ module.exports.createPost  =  (req, res)=>{
 
 
 
+module.exports.destroyPost =  (req, res)=>{
+    postTable.findById(req.params.id, (err, data)=>{
+        if(req.user.id==data.user){
+            // delete the post 
+           data.remove()
 
+           //delete the all comment 
+            commentTable.deleteMany({postId:req.params.id}, (err)=>{
+                if(err){
+                console.log("Error deleting comments of a post", err);
+                }
+            })
+
+        }
+
+
+    })
+
+    res.redirect("back")
+
+}
 
 
 

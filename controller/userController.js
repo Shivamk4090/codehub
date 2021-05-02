@@ -65,8 +65,30 @@ module.exports.destroy = (req, res) => {
 
 //render profile page of signed in user
 module.exports.profile = (req, res)=>{
-    res.render('profile', {
-        email:res.locals.user.email,
-        name : res.locals.user.name
+
+    userTable.findById(req.params.id, (err, data)=>{
+       
+        res.render('profile', {
+            email:data.email,
+            name : data.name,
+            id:data.id
+        })
+       
     })
+  
+    
+}
+
+
+module.exports.updateProfile = (req, res)=>{
+     // userTable.findByIdAndUpdate(req.user.id, {name:req.body.name,email:req.body.email},  )
+    //or since req.body ==  {name:req.body.name,email:req.body.email}
+    userTable.findByIdAndUpdate(req.user.id, req.body, (err, data)=>{
+        
+        if(err){
+            console.log("Error updating the user");
+        }
+    } )
+
+    res.redirect("back")
 }

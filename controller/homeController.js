@@ -11,16 +11,13 @@ module.exports.home = function(req, res){
       
     //     res.render('home', {postList : data})
     // })
-    var  users= new Array();
+    var  users
 
     userTable.find({}, (err, data)=>{
-        for(x of data){
-            users.push(x.name)
-        }
-
+       users = data
     })
     
-
+   
 
     ////multiple  populate and nesting populate
     postTable.find({})

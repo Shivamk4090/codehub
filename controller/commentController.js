@@ -30,3 +30,29 @@ module.exports.createComment  = (req, res)=>{
     res.redirect('/')
 
 }
+
+
+module.exports.deleteComment = (req, res) =>{
+
+    commentTable.findById(req.params.id, (err, data)=>{
+        if(err){
+            console.log("Error finding the comment")
+        }
+        if(req.user.id == data.userId){
+            ////remove the comment in commentTable
+            data.remove()
+            //update the commentid array from the postTable
+            postTable.findByIdAndUpdate(data.postId, {$pull : {commentid: req.params.id}}, (err, post)=>{
+                if(err){
+                    console.log("Error updating commentId in the PostTable ");
+                }
+            } )
+
+        }
+
+    })
+
+
+
+    res.redirect("back")
+}

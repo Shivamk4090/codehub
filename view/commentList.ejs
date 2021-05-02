@@ -1,0 +1,23 @@
+<div class="comment">
+    <form action="/user/comment" method="post" class="form-inline">
+        <input type="text" name="comment" id="" class="form-control" required>
+        <input type="hidden" name="postId" value=<%= x._id %> >
+        <input type="submit" value="comment" class="btn">
+    </form>
+<div class="post-comments" >
+    <ul >
+        <% for(z of x["commentid"]){%> 
+            <li class="list-group-item " > 
+                <% if(z.userId.id == user.id){ %>
+                <a href="/comment/delete/<%=z.id%>"><img src="https://img.icons8.com/flat-round/12/000000/delete-sign.png"/></a> 
+                <% } %> 
+                <%= z["content"] %> 
+                ....................
+                <small>
+                    <%= z["userId"].name %>
+                </small>
+            </li>
+        <% } %> 
+    </ul>
+</div>
+</div>

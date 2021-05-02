@@ -30,7 +30,7 @@
 
            <% if(locals.user){%> 
 
-          <li><a href="/user/profile"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+          <li><a href="/user/profile/<%=locals.user.id%> "><span class="glyphicon glyphicon-user"></span> Profile</a></li>
           <li><a href="/user/destroy"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 
 
