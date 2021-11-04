@@ -1,58 +1,49 @@
-const commentTable = require("../model/commentSchema")
-const postTable = require("../model/postSchema")
+const commentTable = require("../model/commentSchema");
+const postTable = require("../model/postSchema");
 
+module.exports.createComment = async (req, res) => {
+  try {
+    let data = await postTable.findById(req.body.postId);
 
-module.exports.createComment  = (req, res)=>{
-  
+    if (data) {
+      let comment = await commentTable.create({
+        content: req.body.comment,
+        postId: req.body.postId,
+        userId: req.user._id,
+      });
 
-    postTable.findById(req.body.postId , (err, data)=>{
-        
-            if(err){
-                console.log("error posting comment", err);
-            }
-            if(data){
-                commentTable.create({
-                    content:req.body.comment,
-                    postId:req.body.postId,
-                    userId:req.user._id
-                }, (err, comment)=>{
+      //update the column[commentid] of postable
+      data.commentid.push(comment);
+      data.save();
+    }
 
-                    //update the column[commentid] of postable 
-                    data.commentid.push(comment)
-                    data.save()
-                
-                } )
-                
-            }
-    })
+    res.redirect("/");
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-    
-    res.redirect('/')
+module.exports.deleteComment = async (req, res) => {
+  try {
+    let data = await commentTable.findById(req.params.id);
 
-}
-
-
-module.exports.deleteComment = (req, res) =>{
-
-    commentTable.findById(req.params.id, (err, data)=>{
-        if(err){
-            console.log("Error finding the comment")
+    if (req.user.id == data.userId) {
+      ////remove the comment in commentTable
+      data.remove();
+      //update the commentid array from the postTable
+      await postTable.findByIdAndUpdate(
+        data.postId,
+        { $pull: { commentid: req.params.id } },
+        (err, post) => {
+          if (err) {
+            console.log("Error updating commentId in the PostTable ");
+          }
         }
-        if(req.user.id == data.userId){
-            ////remove the comment in commentTable
-            data.remove()
-            //update the commentid array from the postTable
-            postTable.findByIdAndUpdate(data.postId, {$pull : {commentid: req.params.id}}, (err, post)=>{
-                if(err){
-                    console.log("Error updating commentId in the PostTable ");
-                }
-            } )
+      );
+    }
 
-        }
-
-    })
-
-
-
-    res.redirect("back")
-}
+    res.redirect("back");
+  } catch (error) {
+    console.log(error);
+  }
+};
