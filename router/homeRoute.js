@@ -2,11 +2,12 @@ const express = require("express");
 const router = express.Router();
 const passport = require("passport");
 
-// router.use("/home",(req, res, next) => {
-//     console.log(Date.now())
-//     next()
-// })
+//use()
+router.use("/api", require("./api"));
 
+router.get("/test", (req, res) => {
+  res.render("test");
+});
 //homeController module & routes
 const homeController = require("../controller/homeController");
 router.get("/", homeController.home);

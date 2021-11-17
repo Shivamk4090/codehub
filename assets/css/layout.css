@@ -1,18 +1,31 @@
+.mybody {
+  display: flex;
+}
+.left {
+  flex-grow: 2;
+}
+.middle {
+  padding: 10;
+  flex-grow: 4;
+}
+.right {
+  flex-grow: 2;
+}
 
-/* Remove the navbar's default rounded borders and increase the bottom margin */ 
+/* Remove the navbar's default rounded borders and increase the bottom margin */
 .navbar {
   margin-bottom: 50px;
   border-radius: 0;
 }
 
-/* Remove the jumbotron's default bottom margin */ 
- .jumbotron {
+/* Remove the jumbotron's default bottom margin */
+.jumbotron {
   margin-bottom: 0;
 }
 
 /* Add a gray background color and some padding to the footer */
 footer {
-  position:relative;
+  position: relative;
   background-color: #f2f2f2;
   padding: 25px;
   left: 0;
